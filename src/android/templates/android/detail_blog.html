@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<style type="text/css">
+
+    .card {
+        max-width: 100%;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    #card-design {
+        background-color: white;
+        border-left: 6px solid green;
+        margin-bottom: 5px;
+        padding: 10px;
+    }
+
+    #card-design:hover {
+        background-color: green;
+		color: white;
+    }
+
+    #title {
+        text-decoration-line: none;
+        color: darkgray;
+    }
+
+
+</style>
+
+<div class="mt-4 container-fluid">
+
+
+
+    <div class="row">
+
+        <!--		side nav   -->
+        <div class="col-sm-2">
+
+
+            {% if blog_posts_list %}
+            {% for post in blog_posts_list %}
+            <div id="card-design" class="">
+                <a id="title" class="text-xs-left" href="{% url 'android:detail' post.slug %}">
+                    {{post.title}}
+                </a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No List here Now!</p>
+            {% endif %}
+
+
+        </div>
+
+        <!--  side nav end   -->
+
+        <div class="col-sm-8">
+            <div class="card">
+                <img class="card-img-top" src="{{blog_post.image.url}}">
+                <div class="card-body">
+                    <h2 class="card-title">{{blog_post.title}}</h2>
+                    <p class="card-text">{{blog_post.body|safe}}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    Updated on {{blog_post.date_updated}} by {{blog_post.author}}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% endblock content %}

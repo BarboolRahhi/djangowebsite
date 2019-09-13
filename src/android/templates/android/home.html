@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+.jumbotron {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  margin-bottom: 0;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+</style>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+
+      		<!-- Blog posts-->
+			{% if blog_posts %}
+				{% for post in blog_posts %}
+				
+						{% include 'android/snippets/blog_post_snippet.html' with blog_post=post %}
+					
+				{% endfor %}
+			{% else %}
+				
+					{% include 'android/snippets/blog_post_snippet.html' with query=query %}
+				
+			{% endif %}
+			<!-- End Blog posts-->
+
+			<!-- Pagination -->
+	
+
+		</div>
+		<!-- end blog feed -->
+      </div>
+    </div>
+    	{% include 'android/snippets/blog_post_pagination.html' with blog_posts=blog_posts %}
+  </div>
+
+
+{% endblock content %}
